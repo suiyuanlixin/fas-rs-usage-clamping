@@ -1,6 +1,6 @@
 {
-    "versionCode": 5,
-    "version": "v0.1.0",
-    "zipUrl": "https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/download/v0.1.0/fas-rs-u-c_v0.1.0.zip",
+    "versionCode": 6,
+    "version": "v0.1.1",
+    "zipUrl": "https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/download/v0.1.1/fas-rs-u-c_v0.1.1.zip",
     "changelog": "https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/main/Update/zh-CN/changelog.md"
 }
