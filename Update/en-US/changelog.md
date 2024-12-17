@@ -1,3 +1,7 @@
+# v0.2.0.Release
+###  fas-rs-usage-clamping
+- Update README_CN.md
+- Update README_EN.md
 # v0.1.1.Release
 ### fas-rs-usage-clamping
 - Add the update within the Magisk manager.
