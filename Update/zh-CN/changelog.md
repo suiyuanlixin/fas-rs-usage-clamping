@@ -1,3 +1,7 @@
+# v0.2.0.Release
+###  fas-rs-usage-clamping
+- 更新 README_CN.md
+- 更新 README_EN.md
 # v0.1.1.Release
 ### fas-rs-usage-clamping
 - 加入Magisk管理器内更新
