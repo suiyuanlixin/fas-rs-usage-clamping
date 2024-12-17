@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/icon.svg" width="160" height="160" style="display: block; margin: 0 auto;" alt="SVG Image">
+<img src="assets/icon_li.webp" width="160" height="160" style="display: block; margin: 0 auto;" alt="SVG Image">
 
 # **fas-rs-usage-clamping**
 
@@ -16,11 +16,11 @@
 
 [readme-en-badge]: https://img.shields.io/badge/README-English-blue.svg?style=for-the-badge&logo=readme
 [readme-en-url]: README_EN.md
-[stars-badge]: https://img.shields.io/github/stars/shadow3aaa/fas-rs?style=for-the-badge&logo=github
-[stars-url]: https://github.com/shadow3aaa/fas-rs
-[release-badge]: https://img.shields.io/github/v/release/shadow3aaa/fas-rs?style=for-the-badge&logo=rust
+[stars-badge]: https://img.shields.io/github/stars/suiyuanlixin/fas-rs-usage-clamping?style=for-the-badge&logo=github
+[stars-url]: https://github.com/suiyuanlixin/fas-rs-usage-clamping
+[release-badge]: https://img.shields.io/github/v/release/suiyuanlixin/fas-rs-usage-clamping?style=for-the-badge&logo=shell
 [release-url]: https://github.com/shadow3aaa/fas-rs/releases/latest
-[download-badge]: https://img.shields.io/github/downloads/shadow3aaa/fas-rs/total?style=for-the-badge
+[download-badge]: https://img.shields.io/github/downloads/suiyuanlixin/fas-rs-usage-clamping/total?style=for-the-badge
 [download-url]: https://github.com/shadow3aaa/fas-rs/releases/latest
 [telegram-badge]: https://img.shields.io/badge/Group-blue?style=for-the-badge&logo=telegram&label=Telegram
 [telegram-url]: https://t.me/fas_rs_official
