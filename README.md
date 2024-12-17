@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/icon_li.webp" width="160" height="160" style="display: block; margin: 0 auto;" alt="SVG Image">
+<img src="assets/icon_li.webp" width="160" height="160" style="display: block; margin: 0 auto;" alt="Image">
 
 # **fas-rs-usage-clamping**
 
@@ -46,10 +46,13 @@
 
 - 为了最大化用户态的灵活性，`fas-rs` 有自己的一套插件系统，开发说明详见[插件的模板仓库](https://github.com/shadow3aaa/fas-rs-extension-module-template)。
 - 作为 `fas-rs` 的修改版， `fas-rs-usage-clamping` 可使用与其相同的插件系统，但仍建议使用 offset 插件，如下：
+
   - [Fas-rsextension-offset](https://github.com/suiyuanlixin/Fas-rs-extension-offset)
   - [7+gen2-offset-fas-rs-extension](https://github.com/Qi-Serein/7PlusGen2-offset-fas-rs-extension)
   - [fas-gt-dlc](https://github.com/yinwanxi/Fas_gt_dlc)
+
 - 不建议使用或可能与 `fas-rs-usage-clamping` 导致冲突的插件：
+
   - [Extension for FAS-RS](https://github.com/AestasBritannia/Extension-for-FAS-RS)
   - [Fas-rs-extension-schedhorizon](https://github.com/suiyuanlixin/Fas-rs-extension-offset#fas-rs-extension-schedhorizon)
   - Fas-rs-extension-limiter
