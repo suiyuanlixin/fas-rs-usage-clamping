@@ -21,9 +21,9 @@
 [stars-badge]: https://img.shields.io/github/stars/suiyuanlixin/fas-rs-usage-clamping?style=for-the-badge&logo=github
 [stars-url]: https://github.com/suiyuanlixin/fas-rs-usage-clamping
 [release-badge]: https://img.shields.io/github/v/release/suiyuanlixin/fas-rs-usage-clamping?style=for-the-badge&logo=shell
-[release-url]: https://github.com/shadow3aaa/fas-rs/releases/latest
+[release-url]: https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/latest
 [download-badge]: https://img.shields.io/github/downloads/suiyuanlixin/fas-rs-usage-clamping/total?style=for-the-badge
-[download-url]: https://github.com/shadow3aaa/fas-rs/releases/latest
+[download-url]: https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/latest
 [telegram-badge]: https://img.shields.io/badge/Group-blue?style=for-the-badge&logo=telegram&label=Telegram
 [telegram-url]: https://t.me/fas_rs_official
 
