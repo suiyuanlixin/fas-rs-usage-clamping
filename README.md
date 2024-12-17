@@ -8,7 +8,6 @@
 
 [![English][readme-en-badge]][readme-en-url]
 [![Stars][stars-badge]][stars-url]
-[![CI Build][ci-badge]][ci-url]
 [![Release][release-badge]][release-url]
 [![Download][download-badge]][download-url]
 [![Telegram][telegram-badge]][telegram-url]
@@ -19,8 +18,6 @@
 [readme-en-url]: README_EN.md
 [stars-badge]: https://img.shields.io/github/stars/shadow3aaa/fas-rs?style=for-the-badge&logo=github
 [stars-url]: https://github.com/shadow3aaa/fas-rs
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/shadow3aaa/fas-rs/ci.yml?style=for-the-badge&label=CI%20Build&logo=githubactions
-[ci-url]: https://github.com/shadow3aaa/fas-rs/actions/workflows/ci.yml
 [release-badge]: https://img.shields.io/github/v/release/shadow3aaa/fas-rs?style=for-the-badge&logo=rust
 [release-url]: https://github.com/shadow3aaa/fas-rs/releases/latest
 [download-badge]: https://img.shields.io/github/downloads/shadow3aaa/fas-rs/total?style=for-the-badge
