@@ -1,5 +1,13 @@
+# v0.3.2.Release
+### fas-rs-usage-clamping
+- The "Action" button has been added since Magisk version 27008+
+- Update README_CN.md
+- Update README_EN.md
+- Optimize the information display on the scene adjustment page
+### fas-rs
+- Synchronize the updates of shadow3aaa.
 # v0.2.0.Release
-###  fas-rs-usage-clamping
+### fas-rs-usage-clamping
 - Update README_CN.md
 - Update README_EN.md
 # v0.1.1.Release
