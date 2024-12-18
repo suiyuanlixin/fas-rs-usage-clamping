@@ -1,3 +1,6 @@
+# v0.3.3.Release
+### cpufreq clamping
+- Delete the configurations left behind by the old versions in vtools.
 # v0.3.2.Release
 ### fas-rs-usage-clamping
 - The "Action" button has been added since Magisk version 27008+
