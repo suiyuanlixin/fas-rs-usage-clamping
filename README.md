@@ -41,6 +41,7 @@
 
   - [@shadow3](https://github.com/shadow3aaa) 帧感知调度 `fas-rs` 的修改版！直接兼容且内置 [@ztc1997](https://github.com/ztc1997) & [@hfdem](https://github.com/hfdem) 的 `cpufreq_clamping` 调度。
   - 模块现已支持 [`Magisk`](https://github.com/topjohnwu/Magisk) 管理器内更新，模块支持自动识别当前系统语言 ( zh-CN / en-US ) 显示刷入脚本及更新日志。
+  - 模块现已加入 `Magisk` 27008+ 支持的“操作”按钮：点击切换 Description 显示模块简介 / 模块生效状态。
 
 ## **插件系统**
 
