@@ -43,6 +43,7 @@
 
   - It's a modified version of the frame aware scheduling `fas-rs` by [@shadow3](https://github.com/shadow3aaa)! It is directly compatible with and has the `cpufreq_clamping` scheduling built in by [@ztc1997](https://github.com/ztc1997) & [@hfdem](https://github.com/hfdem).
   - The module now supports updates within the [`Magisk`](https://github.com/topjohnwu/Magisk) manager. The module supports automatically recognizing the current system language (zh-CN / en-US) to display the flashing script and update log.
+  - The "Action" button supported by Magisk starting from version 27008 has been added to the module: Click to toggle the "Description" to display the module introduction / the effective status of the module.
 
 ## **Extension System**
 
