@@ -18,8 +18,6 @@
 
 BASEDIR="$(dirname $(readlink -f "$0"))"
 
-cp -rf $BASEDIR/powercfg /data/
-
 source $BASEDIR/gen_json.sh $1
 echo "$json" >/data/powercfg.json
 

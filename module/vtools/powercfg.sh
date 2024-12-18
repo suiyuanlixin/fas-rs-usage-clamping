@@ -18,11 +18,6 @@
 
 mode=/dev/fas_rs/mode
 
-switch_mode() {
-	echo "$1" > /data/cur_powermode.txt
-	sh /data/powercfg/$1.sh
-}
-
 case "$1" in
     "init")
         echo fast >$mode
@@ -30,19 +25,23 @@ case "$1" in
         ;;
     "fast" | "pedestal")
         echo fast >$mode
-        switch_mode $1
+        echo 0 > /sys/module/cpufreq_clamping/parameters/enable 
+		echo "$1" > /data/cur_powermode.txt
         ;;
     "powersave" | "standby")
         echo powersave >$mode
-        switch_mode $1
+        echo 1 > /sys/module/cpufreq_clamping/parameters/enable 
+		echo "$1" > /data/cur_powermode.txt
         ;;
     "balance")
         echo balance >$mode
-        switch_mode $1
+        echo 1 > /sys/module/cpufreq_clamping/parameters/enable 
+		echo "$1" > /data/cur_powermode.txt
         ;;
     "performance")
         echo performance >$mode
-        switch_mode $1
+        echo 1 > /sys/module/cpufreq_clamping/parameters/enable 
+		echo "$1" > /data/cur_powermode.txt
         ;;
     *)
         echo "Failed to apply unknown action '$1'."
