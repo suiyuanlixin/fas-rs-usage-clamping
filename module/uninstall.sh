@@ -25,8 +25,8 @@ DIR=/sdcard/Android/fas-rs
 	rm -rf $DIR
 	rm -f /data/powercfg.json
 	rm -f /data/powercfg.sh
+	rm -f /data/powercfg
 	rm /data/cur_powermode.txt
-	rm /data/powercfg
 	rm /data/cpufreq_clamping.conf
     rm /data/module_switch.ini
 } &

@@ -29,7 +29,7 @@ json=$(
 {
     "name": "fas-rs-usage-clamping",
     "author": "shadow3&ztc1997&Skyi_Lici",
-    "version": "\n- fas-rs-usage-clamping(@$author): $version\n- fas-rs(@$fas_rs_author): $fas_rs_version\n- cpufreq_clamping(@$cpufreq_clamping_author):",
+    "version": "\n- (@$author) fas-rs-usage-clamping: $version\n- (@$fas_rs_author) fas-rs: $fas_rs_version\n- (@$cpufreq_clamping_author) cpufreq_clamping:",
     "versionCode": ${cpufreq_clamping_version},
     "features": {
         "strict": true,

@@ -109,3 +109,9 @@ fi
 
 sh $MODPATH/vtools/init_vtools.sh $(realpath $MODPATH/module.prop)
 /data/powercfg.sh $(cat /data/cur_powermode.txt)
+
+if [ -f "$MODPATH/prop_des" ]; then
+    > "$MODPATH/prop_des"
+fi
+
+echo "description" > "$MODPATH/prop_des"
