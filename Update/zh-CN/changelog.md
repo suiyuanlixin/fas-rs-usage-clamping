@@ -1,3 +1,6 @@
+# v0.3.3.Release
+### cpufreq clamping
+- 删除vtools中旧版本遗留的配置
 # v0.3.2.Release
 ### fas-rs-usage-clamping
 - Magisk 27008+ 加入"Action"按钮
