@@ -110,7 +110,16 @@
     - 类型：`整数`
     - 单位：`Mhz`
     - boost状态下的基准频率
-    
+
+  - **max_freq**
+
+    - 类型：`整数`
+    - 单位：`Mhz`
+    - 集群最大频率
+
+  - **注意**
+
+    - 在设置参数是需满足：余量（margin）< 基准频率（baseline_freq）< boost基准频率（boost_baseline_freq）≤ 最大频率（max_freq）
 - ### **游戏列表(`game_list`)说明：**
 
   - **`"package"` = `target_fps`**
