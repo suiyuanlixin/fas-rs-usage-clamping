@@ -112,7 +112,17 @@
     - Type: `integer`
     - Unit: `Mhz`
     - The baseline frequency in the boost state.
-    
+
+  - **max_freq**
+
+    - Type: `integer`
+    - Unit: `Mhz`
+    - Maximum frequency of the cluster.
+
+  - **Note**
+
+    - When setting the parameter, it is required to meet the following condition: margin < baseline_freq < boost_baseline_freq ≤ max_freq.
+  
 - ### **Game List (`game_list`) Description:**
 
   - **`"package"` = `target_fps`**
