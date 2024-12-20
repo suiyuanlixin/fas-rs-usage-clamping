@@ -1,3 +1,10 @@
+# v0.3.6.Release
+### fas-rs-usage-clamping
+- 更新 README_CN.md
+- 更新 README_EN.md
+### cpufreq_clamping
+- 同步 ztc1997 & hfdem 的更新
+- 修复在某些5.15内核上控制流完整性错误
 # v0.3.5.Release
 ### fas-rs
 - 同步 shadow3aaa 的更新
