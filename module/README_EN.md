@@ -112,7 +112,17 @@
     - Type: `integer`
     - Unit: `Mhz`
     - The baseline frequency in the boost state.
-    
+
+  - **max_freq**
+
+    - Type: `integer`
+    - Unit: `Mhz`
+    - Maximum frequency of the cluster.
+
+  - **Note**
+
+    - When setting the parameter, it is required to meet the following condition: margin < baseline_freq < boost_baseline_freq ≤ max_freq.
+  
 - ### **Game List (`game_list`) Description:**
 
   - **`"package"` = `target_fps`**
@@ -186,14 +196,17 @@ boost_app_switch_ms=150
 baseline_freq=1700
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster1
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster2
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2500
+max_freq=9999
 ```
 
 ## **Configuration Merging**
