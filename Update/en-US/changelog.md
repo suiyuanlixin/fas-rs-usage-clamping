@@ -1,3 +1,9 @@
+# v0.3.5.Release
+- ### fas-rs
+- Synchronize the updates of shadow3aaa.
+### cpufreq_clamping
+- Synchronize the updates of ztc1997 & hfdem.
+- A new parameter "max_freq" has been added to the configuration ( For details, please refer to the [README_EN.md](https://github.com/suiyuanlixin/fas-rs-usage-clamping/blob/main/README_EN.md#parameter-of-cpufreq_clamping-config-description) )
 # v0.3.3.Release
 ### cpufreq clamping
 - Delete the configurations left behind by the old versions in vtools.
