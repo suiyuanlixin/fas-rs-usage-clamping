@@ -193,14 +193,17 @@ boost_app_switch_ms=150
 baseline_freq=1700
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster1
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster2
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2500
+max_freq=9999
 ```
 
 ## **配置合并**
