@@ -43,12 +43,20 @@ for cluster in 0 1 2; do
             s/boost_baseline_freq=//p
         }
     }" "$CONFIG_FILE" | head -n 1)
-
+    
+    max_freq=$(sed -n "/^#cluster${cluster}$/,/^#cluster/{ 
+        /max_freq=/ {
+            s/max_freq=//p
+        }
+    }" "$CONFIG_FILE" | head -n 1)
+    
     baseline_freq_khz=$((baseline_freq * 1000))
     margin_khz=$((margin * 1000))
     boost_baseline_freq_khz=$((boost_baseline_freq * 1000))
+    max_freq_khz=$((max_freq * 1000))
 
     echo "$cluster $baseline_freq_khz" > "$SYSFS_PATH/baseline_freq"
     echo "$cluster $margin_khz" > "$SYSFS_PATH/margin"
     echo "$cluster $boost_baseline_freq_khz" > "$SYSFS_PATH/boost_baseline_freq"
+    echo "$cluster $max_freq_khz" > "$SYSFS_PATH/max_freq"
 done

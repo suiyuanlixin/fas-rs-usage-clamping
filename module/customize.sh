@@ -22,6 +22,7 @@ MERGE_FLAG=$DIR/.need_merge
 LOCALE=$(getprop persist.sys.locale)
 KERNEL_VERSION=`uname -r| sed -n 's/^\([0-9]*\.[0-9]*\).*/\1/p'`
 WEBROOT_PATH="/data/adb/modules/cpufreq_clamping/webroot"
+RECREAT_CPUFREQ_CLAMPING_CONF=1
 CPUFREQ_CLAMPING_CONF="/data/cpufreq_clamping.conf"
 DEFAULT_CPUFREQ_CLAMPING_CONF=$(cat <<EOF
 interval_ms=40
@@ -30,14 +31,17 @@ boost_app_switch_ms=150
 baseline_freq=1700
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster1
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2000
+max_freq=9999
 #cluster2
 baseline_freq=1600
 margin=300
 boost_baseline_freq=2500
+max_freq=9999
 EOF
 )
 
@@ -55,6 +59,25 @@ local_echo() {
 	else
 		echo "$2"
 	fi
+}
+
+creat_conf() {
+    if [[ ! -f "$CPUFREQ_CLAMPING_CONF" ]]; then
+        local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
+        echo "$DEFAULT_CPUFREQ_CLAMPING_CONF" > "$CPUFREQ_CLAMPING_CONF"
+    else
+        local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
+    fi
+}
+
+recreat_conf() {
+    rm "$CPUFREQ_CLAMPING_CONF"
+    echo "$DEFAULT_CPUFREQ_CLAMPING_CONF" > "$CPUFREQ_CLAMPING_CONF"
+    if [[ -f "$CPUFREQ_CLAMPING_CONF" ]]; then
+        local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
+    else
+        local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
+    fi
 }
 
 if [ $ARCH != arm64 ]; then
@@ -95,12 +118,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-if [[ ! -f "$CPUFREQ_CLAMPING_CONF" ]]; then
-    echo "$DEFAULT_CPUFREQ_CLAMPING_CONF" > "$CPUFREQ_CLAMPING_CONF"
-    local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
-else
-    local_print "- 配置文件夹：/data/cpufreq_clamping.conf" "- Configuration folder: /data/cpufreq_clamping.conf"
-fi
+[[ $RECREAT_CPUFREQ_CLAMPING_CONF -eq 1 ]] && recreat_conf || creat_conf
 
 if [ -f "$WEBROOT_PATH/index.html" ]; then
     rm -rf $WEBROOT_PATH/*
