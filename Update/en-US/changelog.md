@@ -1,3 +1,10 @@
+# v0.3.6.Release
+### fas-rs-usage-clamping
+- Update README_CN.md
+- Update README_EN.md
+### cpufreq_clamping
+- Synchronize the updates of ztc1997 & hfdem.
+- Fix the control flow integrity errors on some 5.15 kernels.
 # v0.3.5.Release
 - ### fas-rs
 - Synchronize the updates of shadow3aaa.
