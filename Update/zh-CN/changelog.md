@@ -1,3 +1,9 @@
+# v0.3.5.Release
+### fas-rs
+- 同步 shadow3aaa 的更新
+### cpufreq_clamping
+- 同步 ztc1997 & hfdem 的更新
+- 配置中新增 max_freq ( 详情见[介绍](https://github.com/suiyuanlixin/fas-rs-usage-clamping/blob/main/README_EN.md#parameter-of-cpufreq_clamping-config-description) )
 # v0.3.3.Release
 ### cpufreq clamping
 - 删除vtools中旧版本遗留的配置
