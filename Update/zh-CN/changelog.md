@@ -1,3 +1,6 @@
+# v0.3.7.Release
+### fas-rs-usage-clamping
+- 修复退出游戏无法恢复cpufreq_clamping
 # v0.3.6.Release
 ### fas-rs-usage-clamping
 - 更新 README_CN.md
