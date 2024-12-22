@@ -1,3 +1,6 @@
+# v0.3.8.Release
+### fas-rs-usage-clamping
+- 完美修复cpufreq_clamping的自动开关
 # v0.3.7.Release
 ### fas-rs-usage-clamping
 - 修复退出游戏无法恢复cpufreq_clamping
