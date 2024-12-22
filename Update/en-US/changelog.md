@@ -1,3 +1,6 @@
+# v0.3.7.Release
+### fas-rs-usage-clamping
+- Fix the issue that CPU frequency clamping cannot be restored after exiting the game.
 # v0.3.6.Release
 ### fas-rs-usage-clamping
 - Update README_CN.md
