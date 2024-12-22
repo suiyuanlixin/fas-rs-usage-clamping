@@ -1,3 +1,6 @@
+# v0.3.8.Release
+### fas-rs-usage-clamping
+- Perfectly fix the automatic switch of cpufreq_clamping.
 # v0.3.7.Release
 ### fas-rs-usage-clamping
 - Fix the issue that CPU frequency clamping cannot be restored after exiting the game.
