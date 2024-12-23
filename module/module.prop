@@ -1,11 +1,11 @@
 id=fas_rs
 extension_id=fas_rs_extension_usage_clamping
-name=fas-rs-usage-clamping
-version=v0.3.8
-fas_rs_version=v4.1.0
+name=fas-rs-usage-clamping-pro
+version=v0.1.Pro
+fas_rs_version=v4.1.0.Pro
 cpufreq_clamping_version=20241223
-versionCode=15
+versionCode=17
 author=Skyi_Lici
-fas_rs_author=shadow3aaa
+fas_rs_author=shadow3aaa & nnbhsi
 cpufreq_clamping_author=ztc1997 & hfdem
 description=Frame aware scheduling for android, work with cpufreq clamping. Requires 5.10 or 5.15 kernel and kernel ebpf support.
