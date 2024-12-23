@@ -1,6 +1,6 @@
 {
-    "versionCode": 15,
-    "version": "v0.3.8",
-    "zipUrl": "https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/download/v0.3.8/fas-rs-u-c_v0.3.8.zip",
-    "changelog": "https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/main/Update/en-US/changelog.md"
+    "versionCode": 17,
+    "version": "v0.1.Pro",
+    "zipUrl": "https://github.com/suiyuanlixin/fas-rs-usage-clamping/releases/download/v0.1.Pro/fas-rs-u-c_v0.1.Pro.zip",
+    "changelog": "https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/pro/Update/en-US/changelog.md"
 }
