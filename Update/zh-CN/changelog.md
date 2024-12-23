@@ -1,3 +1,12 @@
+# v0.4.0.Release
+### fas-rs-usage-clamping
+- 在自动开关 cpufreq_clamping 时输出日志
+### fas-rs
+- 同步 shadow3aaa 的更新
+# v0.3.9.Release
+### cpufreq_clamping
+- 同步 ztc1997 & hfdem 的更新
+- 5.15 内核更新内核模块
 # v0.3.8.Release
 ### fas-rs-usage-clamping
 - 完美修复cpufreq_clamping的自动开关
