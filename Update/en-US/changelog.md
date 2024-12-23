@@ -1,3 +1,12 @@
+# v0.4.0.Release
+### fas-rs-usage-clamping
+- Output logs when automatically switching the cpufreq_clamping.
+### fas-rs
+- Synchronize the updates from shadow3aaa.
+# v0.3.9.Release
+### cpufreq_clamping
+- Synchronize the updates from ztc1997 & hfdem.
+- Update the kernel module for the 5.15 kernel.
 # v0.3.8.Release
 ### fas-rs-usage-clamping
 - Perfectly fix the automatic switch of cpufreq_clamping.
