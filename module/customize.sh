@@ -105,7 +105,7 @@ set_perm_recursive $MODPATH 0 0 0755 0644
 set_perm $MODPATH/fas-rs 0 0 0755
 
 local_print "- 配置文件夹：/sdcard/Android/fas-rs" "Configuration folder: /sdcard/Android/fas-rs"
-local_echo "updateJson=https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/main/Update/update_zh.json" "updateJson=https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/main/Update/update_en.json" >>$MODPATH/module.prop
+local_echo "updateJson=https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/pro/Update/update_zh.json" "updateJson=https://raw.githubusercontent.com/suiyuanlixin/fas-rs-usage-clamping/refs/heads/pro/Update/update_en.json" >>$MODPATH/module.prop
 
 resetprop fas-rs-installed true
 
