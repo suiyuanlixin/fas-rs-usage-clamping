@@ -1,3 +1,11 @@
+# v0.4.2.Release
+### fas-rs
+- Synchronize the updates from shadow3aaa.
+### cpufreq_clamping
+- Synchronize the updates from ztc1997 & hfdem.
+# v0.4.1.Release
+### fas-rs-usage-clamping
+- Added the display of the enabled status of cpufreq_clamping in Magisk Manager
 # v0.4.0.Release
 ### fas-rs-usage-clamping
 - Output logs when automatically switching the cpufreq_clamping.
