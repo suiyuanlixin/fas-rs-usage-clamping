@@ -1,3 +1,11 @@
+# v0.4.2.Release
+### fas-rs
+- 同步 shadow3aaa 的更新
+### cpufreq_clamping
+- 同步 ztc1997 & hfdem 的更新
+# v0.4.1.Release
+### fas-rs-usage-clamping
+- 新增在Magisk管理器中显示cpufreq_clamping开启状态
 # v0.4.0.Release
 ### fas-rs-usage-clamping
 - 在自动开关 cpufreq_clamping 时输出日志
