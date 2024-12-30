@@ -21,6 +21,7 @@ EXTENSIONS=/dev/fas_rs/extensions
 EXTENSION_NAME="fas_rs_extension_usage_clamping.lua"
 prop_des="$MODDIR/prop_des"
 des_value=$(cat "$prop_des")
+enable_value=$(cat "/sys/module/cpufreq_clamping/parameters/enable")
 
 if [ "$des_value" = "description" ]; then
     sed -i "/^description=/s/=.*$/=/" "$MODDIR/module.prop"
@@ -33,6 +34,11 @@ if [ "$des_value" = "description" ]; then
         sed -i "/description=/s/$/[ Cpufreq_clamping loaded ] /" "$MODDIR/module.prop"
     else
         sed -i "/description=/s/$/[ Cpufreq_clamping unloaded ] /" "$MODDIR/module.prop"
+    fi
+    if [ "$enable_value" = "1" ]; then
+        sed -i "/description=/s/$/[ Cpufreq_clamping enabled ] /" "$MODDIR/module.prop"
+    else
+        sed -i "/description=/s/$/[ Cpufreq_clamping disabled ] /" "$MODDIR/module.prop"
     fi
     > "$prop_des"
     echo "status" > "$prop_des"

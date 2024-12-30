@@ -1,0 +1,35 @@
+let e=0;function t(t,a){return void 0===a&&(a={}),new Promise((r,s)=>{let i=`exec_callback_${Date.now()}_${e++}`;function n(e){delete window[e]}window[i]=(e,t,a)=>{r({errno:e,stdout:t,stderr:a}),n(i)};try{ksu.exec(t,JSON.stringify(a),i)}catch(e){s(e),n(i)}})}function a(){this.listeners={}}function r(){this.listeners={},this.stdin=new a,this.stdout=new a,this.stderr=new a}function s(e){ksu.toast(e)}a.prototype.on=function(e,t){this.listeners[e]||(this.listeners[e]=[]),this.listeners[e].push(t)},a.prototype.emit=function(e,...t){this.listeners[e]&&this.listeners[e].forEach(e=>e(...t))},r.prototype.on=function(e,t){this.listeners[e]||(this.listeners[e]=[]),this.listeners[e].push(t)},r.prototype.emit=function(e,...t){this.listeners[e]&&this.listeners[e].forEach(e=>e(...t))};const i={interval_ms:"/sys/module/cpufreq_clamping/parameters/interval_ms",boost_app_switch_ms:"/sys/module/cpufreq_clamping/parameters/boost_app_switch_ms",baseline_freq:"/sys/module/cpufreq_clamping/parameters/baseline_freq",margin:"/sys/module/cpufreq_clamping/parameters/margin",boost_baseline_freq:"/sys/module/cpufreq_clamping/parameters/boost_baseline_freq",max_freq:"/sys/module/cpufreq_clamping/parameters/max_freq",util_metric_method:"/sys/module/cpufreq_clamping/parameters/util_metric_method",nr_cluster:"/sys/module/cpufreq_clamping/parameters/nr_cluster"};async function n(e){let{errno:a,stdout:r}=await t(`cat ${e}`);return 0===a?r.trim():""}async function l(){let e=await Promise.all(Object.entries(i).map(async([e,t])=>({name:e,value:await n(t)}))),t=e.find(e=>"interval_ms"===e.name);t&&(document.getElementById("interval_ms").value=t.value);let a=e.find(e=>"boost_app_switch_ms"===e.name);a&&(document.getElementById("boost_app_switch_ms").value=a.value);let r=parseInt(e.find(e=>"nr_cluster"===e.name)?.value||"0",10),s=(e.find(e=>"baseline_freq"===e.name)?.value||"").split("\n"),l=(e.find(e=>"margin"===e.name)?.value||"").split("\n"),u=(e.find(e=>"boost_baseline_freq"===e.name)?.value||"").split("\n"),o=(e.find(e=>"max_freq"===e.name)?.value||"").split("\n"),m=document.getElementById("cluster-parameters");m.innerHTML="";for(let e=0;e<r;e++){let t=s.find(t=>t.startsWith(`${e} `))?.split(" ")[1]||"",a=t?Math.floor(parseInt(t)/1e3).toString():"",r=l.find(t=>t.startsWith(`${e} `))?.split(" ")[1]||"",i=r?Math.floor(parseInt(r)/1e3).toString():"",n=u.find(t=>t.startsWith(`${e} `))?.split(" ")[1]||"",c=n?Math.floor(parseInt(n)/1e3).toString():"",_=o.find(t=>t.startsWith(`${e} `))?.split(" ")[1]||"",p=_?Math.floor(parseInt(_)/1e3).toString():"",d=document.createElement("div");d.classList.add("parameter-card"),d.innerHTML=`
+        <div class="cluster-container">
+            <h3>Cluster ${e}:</h3>
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="baseline_freq_${e}" class="parameter-label">\u{57FA}\u{51C6}\u{9891}\u{7387}\u{FF08}MHz\u{FF09}:</label>
+                    <input type="number" id="baseline_freq_${e}" class="parameter-input" placeholder="\u{8F93}\u{5165}\u{57FA}\u{51C6}\u{9891}\u{7387}\u{FF08}MHz\u{FF09}" value="${a}">
+                </div>
+                
+                <div class="input-group">
+                    <label for="margin_${e}" class="parameter-label">\u{4F59}\u{91CF}\u{FF08}MHz\u{FF09}:</label>
+                    <input type="number" id="margin_${e}" class="parameter-input" placeholder="\u{8F93}\u{5165}\u{4F59}\u{91CF}\u{FF08}MHz\u{FF09}" value="${i}">
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="boost_baseline_freq_${e}" class="parameter-label">boost \u{9891}\u{7387}\u{FF08}MHz\u{FF09}:</label>
+                    <input type="number" id="boost_baseline_freq_${e}" class="parameter-input" placeholder="\u{8F93}\u{5165} boost \u{9891}\u{7387}\u{FF08}MHz\u{FF09}" value="${c}">
+                </div>
+
+                <div class="input-group">
+                    <label for="max_freq_${e}" class="parameter-label">\u{6700}\u{5927}\u{9891}\u{7387}\u{FF08}MHz\u{FF09}:</label>
+                    <input type="number" id="max_freq_${e}" class="parameter-input" placeholder="\u{8F93}\u{5165}\u{6700}\u{5927}\u{9891}\u{7387}\u{FF08}MHz\u{FF09}" value="${p}">
+                </div>
+            </div>
+        </div>
+    `,m.appendChild(d)}}async function u(e,a){await t(`echo "${a}" > ${e}`)}async function o(){let e=document.getElementById("interval_ms").value,a=document.getElementById("boost_app_switch_ms").value,r=document.getElementById("cluster-parameters").querySelectorAll(".parameter-card");try{let n;await u(i.interval_ms,e),await u(i.boost_app_switch_ms,a);for(let e=0;e<r.length;e++){let t=parseInt(r[e].querySelector(`#baseline_freq_${e}`).value),a=parseInt(r[e].querySelector(`#margin_${e}`).value),n=parseInt(r[e].querySelector(`#boost_baseline_freq_${e}`).value),l=parseInt(r[e].querySelector(`#max_freq_${e}`).value);if(a>=t||t>=n||n>l){s(`\u{96C6}\u{7FA4}${e}\u{7684}\u{53C2}\u{6570}\u{65E0}\u{6548}\u{FF1A}\u{786E}\u{4FDD}\u{4F59}\u{91CF}<\u{57FA}\u{51C6}\u{9891}\u{7387}<boost\u{9891}\u{7387}<=\u{6700}\u{5927}\u{9891}\u{7387}`);return}let o=(1e3*t).toString(),m=(1e3*a).toString(),c=(1e3*n).toString(),_=(1e3*l).toString();await u(i.baseline_freq,`${e} ${o}`),await u(i.margin,`${e} ${m}`),await u(i.boost_baseline_freq,`${e} ${c}`),await u(i.max_freq,`${e} ${_}`)}let o=(n=`interval_ms=${e}
+boost_app_switch_ms=${a}
+`,r.forEach((e,t)=>{let a=e.querySelector(`#baseline_freq_${t}`).value,r=e.querySelector(`#boost_baseline_freq_${t}`).value,s=e.querySelector(`#max_freq_${t}`).value,i=e.querySelector(`#margin_${t}`).value;n+=`#cluster${t}
+baseline_freq=${a}
+margin=${i}
+boost_baseline_freq=${r}
+max_freq=${s}
+`}),n),{errno:m}=await t(`echo "${o}" > /data/cpufreq_clamping.conf`);0===m?(s("参数更新成功!"),l()):s("参数更新失败！")}catch(e){s("参数更新失败！")}}async function m(){try{for(let{cluster:e,margin:t,baseline_freq:a,boost_baseline_freq:r,max_freq:s,util_metric_method:n}of(await u(i.interval_ms,"40"),await u(i.boost_app_switch_ms,"150"),[{cluster:0,margin:3e5,baseline_freq:17e5,boost_baseline_freq:2e6,max_freq:9999999,util_metric_method:0},{cluster:1,margin:3e5,baseline_freq:16e5,boost_baseline_freq:25e5,max_freq:9999999,util_metric_method:1},{cluster:2,margin:3e5,baseline_freq:16e5,boost_baseline_freq:25e5,max_freq:9999999,util_metric_method:1}]))await u(i.margin,`${e} ${t}`),await u(i.baseline_freq,`${e} ${a}`),await u(i.boost_baseline_freq,`${e} ${r}`),await u(i.max_freq,`${e} ${s}`),await u(i.util_metric_method,`${e} ${n}`);s("恢复默认参数成功！"),l()}catch(e){s("恢复默认参数失败！")}}document.addEventListener("DOMContentLoaded",l),document.getElementById("confirm-parameters").addEventListener("click",o),document.getElementById("refresh-parameters").addEventListener("click",l),document.getElementById("reset-defaults").addEventListener("click",m);
