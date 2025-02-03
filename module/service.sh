@@ -18,10 +18,13 @@
 
 MODDIR=${0%/*}
 DIR=/sdcard/Android/fas-rs
+CONF=$DIR/games.toml
 MERGE_FLAG=$DIR/.need_merge
 LOG=$DIR/fas_log.txt
 EXTENSIONS=/dev/fas_rs/extensions
+soc_model=$(getprop ro.soc.model)
 KERNEL_VERSION=`uname -r| sed -n 's/^\([0-9]*\.[0-9]*\).*/\1/p'`
+mod_value=$(cat "$MODDIR/tem_mod")
 
 wait_until_login() {
     while [ "$(getprop sys.boot_completed)" != "1" ]; do
@@ -64,3 +67,20 @@ done
 
 id=$(awk -F= '/extension_id/ {print $2}' $MODDIR/module.prop)
 cp -f $MODDIR/extension/cpufreq_clamping.lua $EXTENSIONS/${id}.lua
+
+if [ "$soc_model" = "SM7675" -o "$soc_model" = "SM8550" ]; then
+    cp -f $MODDIR/extension/kalama_extra.lua $EXTENSIONS/fas_rs_extension_extra_policy.lua
+elif [ "$soc_model" = "MT6886"* ]; then
+    cp -f $MODDIR/extension/sun_extra.lua $EXTENSIONS/fas_rs_extension_extra_policy.lua
+else
+    cp -f $MODDIR/extension/taro_extra.lua $EXTENSIONS/fas_rs_extension_extra_policy.lua
+fi
+
+if [ "$mod_value" = "modify" ]; then
+    sed -i '/\[powersave\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 75000/' "$CONF"
+    sed -i '/\[balance\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 85000/' "$CONF"
+    sed -i '/\[performance\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 95000/' "$CONF"
+    sed -i '/\[fast\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = "disabled"/' "$CONF"
+elif [ "$mod_value" = "disable" ]; then
+    sed -i 's/core_temp_thresh = [^ ]*/core_temp_thresh = "disabled"/g' "$CONF"
+fi

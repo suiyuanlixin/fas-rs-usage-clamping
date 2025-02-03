@@ -18,6 +18,7 @@
 
 DIR=/sdcard/Android/fas-rs
 CONF=$DIR/games.toml
+soc_model=$(getprop ro.soc.model)
 MERGE_FLAG=$DIR/.need_merge
 LOCALE=$(getprop persist.sys.locale)
 KERNEL_VERSION=`uname -r| sed -n 's/^\([0-9]*\.[0-9]*\).*/\1/p'`
@@ -80,15 +81,41 @@ recreat_conf() {
     fi
 }
 
+key_check() {
+    while true; do
+        key_check=$(/system/bin/getevent -qlc 1)
+        key_event=$(echo "$key_check" | awk '{ print $3 }' | grep 'KEY_')
+        key_status=$(echo "$key_check" | awk '{ print $4 }')
+        if [[ "$key_event" == *"KEY_"* && "$key_status" == "DOWN" ]]; then
+            keycheck="$key_event"
+            break
+        fi
+    done
+    while true; do
+        key_check=$(/system/bin/getevent -qlc 1)
+        key_event=$(echo "$key_check" | awk '{ print $3 }' | grep 'KEY_')
+        key_status=$(echo "$key_check" | awk '{ print $4 }')
+        if [[ "$key_event" == *"KEY_"* && "$key_status" == "UP" ]]; then
+            break
+        fi
+    done
+}
+
 if [ $ARCH != arm64 ]; then
-	local_print "- 设备不支持, 非arm64设备！" "- Only for arm64 device !"
+	local_print "- 设备不支持, 非arm64设备！" "- Only for arm64 device!"
 	abort
 elif [ $API -le 30 ]; then
-	local_print "- 系统版本过低, 需要安卓12及以上的系统版本版本！" "- Required A12+ !"
+	local_print "- 系统版本过低, 需要安卓12及以上的系统版本版本！" "- Required A12+!"
 	abort
 elif uname -r | awk -F. '{if ($1!= 5 || ($1 == 5 && ($2!= 10 && $2!= 15))) exit 0; else exit 1}'; then
     local_print "- 内核版本不支持，仅支持5.10或5.15内核！" "- The kernel version doesn't meet the requirement. Only 5.10 or 5.15 kernel is supported!"
     abort
+fi
+
+if [ "$(getprop fas-rs-installed)" = "true" ] && [ -f "/data/adb/fas-rs/fas-rs-mod-installed" ]; then
+    rm -rf /data/adb/fas-rs
+	rm -f /data/fas_rs_mod*
+	local_print "- 已自动清理fas-rs-mod残留文件" "- The residual files of fas-rs-mod have been automatically cleaned up."
 fi
 
 if [ -f $CONF ]; then
@@ -113,7 +140,7 @@ rmmod cpufreq_clamping 2>/dev/null
 insmod $MODPATH/kernelobject/$KERNEL_VERSION/cpufreq_clamping.ko 2>&1
 
 if [ $? -ne 0 ]; then
-    local_print "- 载入 cpufreq_clamping.ko 失败！" "- Failed to load cpufreq_clamping.ko !"
+    local_print "- 载入 cpufreq_clamping.ko 失败！" "- Failed to load cpufreq_clamping.ko!"
 	dmesg | grep cpufreq_clamping | tail -n 20
 	exit 1
 fi
@@ -128,8 +155,67 @@ fi
 sh $MODPATH/vtools/init_vtools.sh $(realpath $MODPATH/module.prop)
 /data/powercfg.sh $(cat /data/cur_powermode.txt)
 
-if [ -f "$MODPATH/prop_des" ]; then
-    > "$MODPATH/prop_des"
+if [ -f "$MODPATH/tem_mod" ]; then
+    > "$MODPATH/tem_mod"
 fi
 
-echo "description" > "$MODPATH/prop_des"
+local_print "- 是否关闭fas对小核集群的频率控制？
+- 音量↑：是
+- 音量↓：否" "- Whether to disable FAS frequency control for the small core cluster?
+- Volume key↑: Yes
+- Volume key↓: No"
+key_check
+case "$keycheck" in
+    "KEY_VOLUMEUP")
+        if [ "$soc_model" = "SM7675" -o "$soc_model" = "SM8550" ]; then
+            sed -i '/log_info("\[extra_policy\] fas-rs load_fas, set extra_policy")/a\    log_info("\[extra_policy\] fas-rs load_fas, set ignore_policy")' "$MODPATH/extension/kalama_extra.lua"
+            sed -i "s/set_extra_policy_rel(0, 3, -50000, 0)/set_ignore_policy(0, true)/" "$MODPATH/extension/kalama_extra.lua"
+            sed -i '/log_info("\[extra_policy\] fas-rs unload_fas, remove extra_policy")/a\    log_info("\[extra_policy\] fas-rs unload_fas, remove ignore_policy")' "$MODPATH/extension/kalama_extra.lua"
+            sed -i "s/remove_extra_policy(0)/set_ignore_policy(0, false)/" "$MODPATH/extension/kalama_extra.lua"
+        elif [ "$soc_model" = "MT6886"* ]; then
+            sed -i 's/log_info("\[extra_policy\] fas-rs load_fas, set extra_policy")/log_info("\[extra_policy\] fas-rs load_fas, set ignore_policy")/' "$MODPATH/extension/sun_extra.lua"
+            sed -i "s/set_extra_policy_rel(0, 6, -150000, -100000)/set_ignore_policy(0, true)/" "$MODPATH/extension/sun_extra.lua"
+            sed -i 's/log_info("\[extra_policy\] fas-rs unload_fas, remove extra_policy")/log_info("\[extra_policy\] fas-rs unload_fas, remove ignore_policy")/' "$MODPATH/extension/sun_extra.lua"
+            sed -i "s/remove_extra_policy(0)/set_ignore_policy(0, false)/" "$MODPATH/extension/sun_extra.lua"
+        else
+            sed -i '/log_info("\[extra_policy\] fas-rs load_fas, set extra_policy")/a\    log_info("\[extra_policy\] fas-rs load_fas, set ignore_policy")' "$MODPATH/extension/taro_extra.lua"
+            sed -i "s/set_extra_policy_rel(0, 4, -50000, 0)/set_ignore_policy(0, true)/" "$MODPATH/extension/taro_extra.lua"
+            sed -i '/log_info("\[extra_policy\] fas-rs unload_fas, remove extra_policy")/a\    log_info("\[extra_policy\] fas-rs unload_fas, remove ignore_policy")' "$MODPATH/extension/taro_extra.lua"
+            sed -i "s/remove_extra_policy(0)/set_ignore_policy(0, false)/" "$MODPATH/extension/taro_extra.lua"
+        fi
+        ;;
+esac
+
+local_print "- 是否关闭或修改fas-rs核心温控？
+- 音量↑：是
+- 音量↓：否" "- Whether to disable or modify the fas-rs core temperature control?
+- Volume key↑: Yes
+- Volume key↓: No"
+key_check
+case "$keycheck" in
+    "KEY_VOLUMEUP")
+        local_print "- 请选择修改或关闭fas-rs核心温控
+- 音量↑：修改fas-rs核心温控
+- 音量↓：关闭fas-rs核心温控" "- Please choose to modify or disable the fas-rs core temperature control
+- Volume key↑: Modify the fas-rs temperature control
+- Volume key↓: Disable the fas-rs temperature control"
+        key_check
+        case "$keycheck" in
+            "KEY_VOLUMEUP")
+                sed -i '/\[powersave\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 75000/' "$CONF"
+                sed -i '/\[balance\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 85000/' "$CONF"
+                sed -i '/\[performance\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = 95000/' "$CONF"
+                sed -i '/\[fast\]/,/^\[/ s/core_temp_thresh = [^ ]*/core_temp_thresh = "disabled"/' "$CONF"
+                echo "modify" > "$MODPATH/tem_mod"
+                ;;
+            "KEY_VOLUMEDOWN")
+                sed -i 's/core_temp_thresh = [^ ]*/core_temp_thresh = "disabled"/g' "$CONF"
+                echo "disable" > "$MODPATH/tem_mod"
+                ;;
+        esac
+        ;;
+esac
+
+if [ -d /data/adb/modules/fas_rs_cpufreq_optimization ]; then
+    local_print "- 在安装完成后可能需要重新安装fas-rs cpufreq-optimization" "- After the installation is complete, it may be necessary to reinstall fas-rs cpufreq-optimization."
+fi

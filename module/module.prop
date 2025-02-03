@@ -1,10 +1,10 @@
 id=fas_rs
 extension_id=fas_rs_extension_usage_clamping
 name=fas-rs-usage-clamping
-version=v0.4.2
-fas_rs_version=v4.1.0
-cpufreq_clamping_version=20241228
-versionCode=20
+version=v0.6.0
+fas_rs_version=v4.5.0
+cpufreq_clamping_version=20241231
+versionCode=38
 author=Skyi_Lici
 fas_rs_author=shadow3aaa
 cpufreq_clamping_author=ztc1997 & hfdem
